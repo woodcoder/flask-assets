@@ -1,5 +1,6 @@
 from __future__ import with_statement
 from os import path
+from urllib import pathname2url
 from flask import _request_ctx_stack, url_for
 from flask.templating import render_template_string
 from webassets.env import (\
@@ -203,6 +204,7 @@ class FlaskResolver(Resolver):
 
         if filepath is not None:
             filename = filepath[len(directory)+1:]
+            filename = pathname2url(filename)
         else:
             filename = item
 
